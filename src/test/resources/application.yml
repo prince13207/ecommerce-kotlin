@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  shutdown: graceful
+  servlet:
+    context-path: /platform
+
+spring:
+  application:
+    name: platform
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        generate_statistics: false
+        jdbc:
+          batch_size: 30
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+    hibernate:
+      ddl-auto: none
+    database: postgresql
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/platform_db?currentSchema=public
+    username: platformuser
+    password: platformpwd
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 10
+      autocommit: false
+      poolname: platform
+      validationTimeout: 60000
+logging:
+  level:
+    root: trace

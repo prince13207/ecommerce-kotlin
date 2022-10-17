@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  platform:
+    image: platform
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: platform
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    env_file:
+      - docker-env-file
+    networks:
+      - platform-local
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=platform_db
+      - POSTGRES_USER=platformuser
+      - POSTGRES_PASSWORD=platformpwd
+    volumes:
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - postgres-data:/var/lib/postgres
+    networks:
+      - platform-local
+volumes:
+  postgres-data:
+
+networks:
+  platform-local:
+    name: platform-local
