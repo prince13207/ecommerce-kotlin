@@ -18,13 +18,15 @@ This service interacts with postgresDB to perform CRUD ops for order data
     -Dservice.name=orderecommerce
     -Dspring_application_context_path=/order-ecommerce
 
-###### Running the app
+###### Running the app : (choose one of the following method)
 
 1.Run the app independently
 
 You can bring up postgres using
 
       docker-compose up postgres
+
+Make appropriate changes to datasource in application.yml file
 
 Start the SpringBootApp in IDE using the above specified env args
 
@@ -56,7 +58,7 @@ Once DB instance is up, from any of your favorite DB editors or intelliJ :
     USERNAME : orderecommerceuser
     PASSWORD : orderecommercepwd
 
-###### Swagger
+###### Swagger : Use to validate API end points 
 
 http://localhost:8080/order-ecommerce/swagger-ui/index.html
 
