@@ -1,4 +1,4 @@
-**###### Order ECommerce SpringBoot Kotlin App
+###### Order ECommerce SpringBoot Kotlin App
 
 This service interacts with postgresDB to perform CRUD ops for order data
 
@@ -69,4 +69,4 @@ App Specific Notes:
 * Make sure to convert entities to dtos in controller response.
 * Add global exception handler to handle various error scenarios and input validations if any
 * Checkout migration from springfox vs springdoc
-  - https://springdoc.org/migrating-from-springfox.html**
+  - https://springdoc.org/migrating-from-springfox.html
