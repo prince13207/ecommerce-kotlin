@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/v1")
 class OrderController(val orderService: OrderService) {
 
-    @PostMapping("/order")
+    @PostMapping("/orders")
     @Operation(summary = "Create an order", description = "Create an order")
     fun createOrder(@RequestBody orderDto: OrderDto): OrderCreateResponse {
         return orderService.createOrder(orderDto)
     }
 
-    @GetMapping("/order/{orderId}")
+    @GetMapping("/orders/{orderId}")
     fun findOrderById(@PathVariable(name = "orderId") orderId: String): Order {
         return orderService.findOrderById(orderId)
     }
 
-    @PatchMapping("/order/{orderId}")
+    @PatchMapping("/orders/{orderId}")
     fun updateOrderStatus(
         @PathVariable("orderId") orderId: String,
         @RequestParam(name = "orderStatus") orderStatus: String

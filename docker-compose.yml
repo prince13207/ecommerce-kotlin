@@ -15,6 +15,7 @@ services:
       - docker-env-file
     networks:
       - order-ecommerce-local
+    restart: always
 
   postgres:
     image: postgres:latest

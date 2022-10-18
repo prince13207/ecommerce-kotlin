@@ -2,11 +2,28 @@
 
 This service interacts with postgresDB to perform CRUD ops for order data
 
+###### Make sure Docker is installed on your machine (https://www.docker.com/products/docker-desktop/)
+
 ###### Building the app
 
      ./gradlew clean build
 
-###### Run Configs
+###### Running the app : (choose one of the following method)
+
+1. Running docker-compose to start both postgres and OrderECommerceApp:
+
+      docker-compose up 
+      docker container ls
+
+2. Run the app independently
+
+You can bring up postgres using
+
+      docker-compose up postgres
+
+Make appropriate changes to datasource in application.yml file
+
+Start the SpringBootApp in IDE using the following env args
 
     -Dspring.datasource.orderecommercedb.url= jdbc:postgresql://postgres:5432/orderecommerce_db?currentSchema=public
     -Dspring.datasource.orderecommercedb.name= orderecommerceuser
@@ -18,31 +35,6 @@ This service interacts with postgresDB to perform CRUD ops for order data
     -Dservice.name=orderecommerce
     -Dspring_application_context_path=/order-ecommerce
 
-###### Running the app : (choose one of the following method)
-
-1.Run the app independently
-
-You can bring up postgres using
-
-      docker-compose up postgres
-
-Make appropriate changes to datasource in application.yml file
-
-Start the SpringBootApp in IDE using the above specified env args
-
-2.Running docker-compose to start both postgres and OrderECommerceApp:
-
-      docker-compose up 
-      docker container ls
-
-3.Running app through Dockerfile and postgres through DockerCompose:
-
-      docker-compose up postgres
-      docker build -t order-ecommerce .
-      docker images
-      docker run --env-file=docker-env-file order-ecommerce
-      docker container ls
-
 Note:
 
 * All the env args are specified in the docker-env-file
@@ -51,7 +43,7 @@ Note:
 
 ###### DB connections
 
-Once DB instance is up, from any of your favorite DB editors or intelliJ :
+Once DB instance is up, from any of your favorite DB editors or IntelliJ :
 
     URL : jdbc:postgresql://localhost:5432/orderecommerce_db
     HOST : localhost

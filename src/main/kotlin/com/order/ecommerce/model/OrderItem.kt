@@ -4,7 +4,7 @@ import java.io.Serializable
 import javax.persistence.*
 
 @Entity
-@Table(name = "plt_order_item")
+@Table(name = "ecommerce_order_item")
 class OrderItem(
 
     @EmbeddedId

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*
 @Slf4j
 class ProductController(val productService: ProductService) {
 
-    @PostMapping("/product")
+    @PostMapping("/products")
     @Operation(summary = "Create a product", description = "Create a product")
     fun createOrder(@RequestBody productDto: ProductDto): Product {
         return productService.createProduct(productDto)
     }
 
-    @GetMapping("/product/{productId}")
+    @GetMapping("/products/{productId}")
     @Operation(summary = "Get a product", description = "Get a product")
     fun getProduct(@PathVariable(name = "productId") productId: String): Product {
         return productService.getProduct(productId)

@@ -5,7 +5,7 @@ import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
-@Table(name = "plt_payment")
+@Table(name = "ecommerce_payment")
 class Payment(
 
     @Id

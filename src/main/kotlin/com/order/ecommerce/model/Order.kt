@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-@Table(name = "plt_order")
+@Table(name = "ecommerce_order")
 @Data
 class Order(
 

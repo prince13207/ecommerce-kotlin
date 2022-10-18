@@ -28,7 +28,7 @@ internal class ProductIntegrationTest {
     @SneakyThrows
     fun testGetProduct() {
         mockMvc?.perform(
-            MockMvcRequestBuilders.get("/api/v1/product/106")
+            MockMvcRequestBuilders.get("/api/v1/products/106")
         )
             ?.andExpect(status().`is`(200))
             ?.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))

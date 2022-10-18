@@ -1,4 +1,4 @@
-create table if not exists plt_payment
+create table if not exists ecommerce_payment
 (
     payment_id          varchar(60)     primary key,
     amount              double precision not null,
@@ -8,7 +8,7 @@ create table if not exists plt_payment
     payment_status      varchar(60)      not null
     );
 
-create table if not exists plt_product
+create table if not exists ecommerce_product
 (
     product_id      varchar(60)     primary key,
     created_at  date             not null,
@@ -18,7 +18,7 @@ create table if not exists plt_product
     title       varchar(60)     not null
     );
 
-create table if not exists plt_address
+create table if not exists ecommerce_address
 (
     address_id     varchar(60) primary key,
     address1       varchar(60) not null,
@@ -31,7 +31,7 @@ create table if not exists plt_address
     zip            varchar(60) not null
     );
 
-create table if not exists plt_order
+create table if not exists ecommerce_order
 (
     order_id            varchar(60) PRIMARY KEY,
     created_at          timestamp,
@@ -46,24 +46,24 @@ create table if not exists plt_order
     payment_id          varchar(60),
     billing_address_id  varchar(60),
     shipping_address_id varchar(60),
-    FOREIGN KEY (payment_id) REFERENCES plt_payment (payment_id),
-    FOREIGN KEY (billing_address_id) REFERENCES plt_address (address_id),
-    FOREIGN KEY (shipping_address_id) REFERENCES plt_address (address_id)
+    FOREIGN KEY (payment_id) REFERENCES ecommerce_payment (payment_id),
+    FOREIGN KEY (billing_address_id) REFERENCES ecommerce_address (address_id),
+    FOREIGN KEY (shipping_address_id) REFERENCES ecommerce_address (address_id)
     );
 
-create table if not exists plt_order_item
+create table if not exists ecommerce_order_item
 (
     order_id       varchar(60),
     product_id         varchar(60),
     quantity       varchar(60) not null,
 
     PRIMARY KEY (order_id,product_id),
-    FOREIGN KEY (order_id) REFERENCES plt_order (order_id),
-    FOREIGN KEY (product_id) REFERENCES plt_product (product_id)
+    FOREIGN KEY (order_id) REFERENCES ecommerce_order (order_id),
+    FOREIGN KEY (product_id) REFERENCES ecommerce_product (product_id)
     );
 
-insert into plt_product (product_id, created_at, description, price, sku, title)
+insert into ecommerce_product (product_id, created_at, description, price, sku, title)
 values (109, current_date, 'Whey', '1.99', '1001', 'protein');
 
-insert into plt_product (product_id, created_at, description, price, sku, title)
+insert into ecommerce_product (product_id, created_at, description, price, sku, title)
 values (108, current_date, 'Orgain', '5.99', '1005', 'protein');

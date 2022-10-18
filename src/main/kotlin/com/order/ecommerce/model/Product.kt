@@ -5,7 +5,7 @@ import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
-@Table(name = "plt_product")
+@Table(name = "ecommerce_product")
 class Product(
 
     @Id
