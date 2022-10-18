@@ -10,7 +10,7 @@ create table if not exists plt_payment
 
 create table if not exists plt_product
 (
-    pod_id      varchar(60)     primary key,
+    product_id      varchar(60)     primary key,
     created_at  date             not null,
     description varchar(60)     not null,
     price       double precision not null,
@@ -54,16 +54,16 @@ create table if not exists plt_order
 create table if not exists plt_order_item
 (
     order_id       varchar(60),
-    pod_id         varchar(60),
+    product_id         varchar(60),
     quantity       varchar(60) not null,
 
-    PRIMARY KEY (order_id,pod_id),
+    PRIMARY KEY (order_id,product_id),
     FOREIGN KEY (order_id) REFERENCES plt_order (order_id),
-    FOREIGN KEY (pod_id) REFERENCES plt_product (pod_id)
+    FOREIGN KEY (product_id) REFERENCES plt_product (product_id)
     );
 
-insert into plt_product (pod_id, created_at, description, price, sku, title)
+insert into plt_product (product_id, created_at, description, price, sku, title)
 values (109, current_date, 'Whey', '1.99', '1001', 'protein');
 
-insert into plt_product (pod_id, created_at, description, price, sku, title)
+insert into plt_product (product_id, created_at, description, price, sku, title)
 values (108, current_date, 'Orgain', '5.99', '1005', 'protein');

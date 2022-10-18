@@ -2,11 +2,11 @@ server:
   port: 8080
   shutdown: graceful
   servlet:
-    context-path: /platform
+    context-path: /order-ecommerce
 
 spring:
   application:
-    name: platform
+    name: order-ecommerce
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
@@ -23,14 +23,14 @@ spring:
     database: postgresql
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/platform_db?currentSchema=public
-    username: platformuser
-    password: platformpwd
+    url: jdbc:postgresql://localhost:5432/orderecommerce_db?currentSchema=public
+    username: orderecommerceuser
+    password: orderecommercepwd
     hikari:
       connection-timeout: 5000
       maximum-pool-size: 10
       autocommit: false
-      poolname: platform
+      poolname: order-ecommerce
       validationTimeout: 60000
 logging:
   level:

@@ -1,6 +1,6 @@
 create table if not exists plt_product
 (
-    pod_id      varchar(60)     primary key,
+    product_id      varchar(60)     primary key,
     created_at  date             not null,
     description varchar(60)     not null,
     price       double precision not null,
@@ -8,5 +8,5 @@ create table if not exists plt_product
     title       varchar(60)     not null
     );
 
-insert into plt_product (pod_id, created_at, description, price, sku, title)
+insert into plt_product (product_id, created_at, description, price, sku, title)
 values (106, '"2022-10-17', 'Coke', '5.99', '1006', 'SoftDrink');

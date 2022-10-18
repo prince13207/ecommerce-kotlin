@@ -1,17 +1,17 @@
 #Runner
 FROM openjdk:17-alpine
-ADD build/libs/platform.jar /app.jar
+ADD build/libs/order-ecommerce.jar /app.jar
 #COPY setup.sql /docker-entrypoint-initdb.d/
 
 ENTRYPOINT java \
               $JAVA_OPTS \
-              -Dspring.datasource.platformdb.url= $spring_datasource_platformdb_url \
-              -Dspring.datasource.platformdb.name= $spring_datasource_platformdb_name \
-              -Dspring.datasource.platformdb.password= $spring_datasource_platformdb_password \
-              -Dspring.datasource.platformdb.hikari.connectiontimeout= $spring_datasource_platformdb_hikari_connectiontimeout \
-              -Dspring.datasource.platformdb.hikari.maximumpoolsize= $spring_datasource_platformdb_hikari_maximumpoolsize \
-              -Dspring.datasource.platformdb.hikari.poolname= $spring_datasource_platformdb_hikari_poolname \
-              -Dspring.datasource.platformdb.hikari.autocommit= $spring_datasource_platformdb_hikari_autocommit \
+              -Dspring.datasource.orderecommercedb.url= $spring_datasource_orderecommercedb_url \
+              -Dspring.datasource.orderecommercedb.name= $spring_datasource_orderecommercedb_name \
+              -Dspring.datasource.orderecommercedb.password= $spring_datasource_orderecommercedb_password \
+              -Dspring.datasource.orderecommercedb.hikari.connectiontimeout= $spring_datasource_orderecommercedb_hikari_connectiontimeout \
+              -Dspring.datasource.orderecommercedb.hikari.maximumpoolsize= $spring_datasource_orderecommercedb_hikari_maximumpoolsize \
+              -Dspring.datasource.orderecommercedb.hikari.poolname= $spring_datasource_orderecommercedb_hikari_poolname \
+              -Dspring.datasource.orderecommercedb.hikari.autocommit= $spring_datasource_orderecommercedb_hikari_autocommit \
               -Dspring_application_context_path= $spring_application_context_path \
              -jar \
              app.jar

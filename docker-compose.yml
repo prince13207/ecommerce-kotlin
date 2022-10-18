@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  platform:
-    image: platform
+  order-ecommerce:
+    image: order-ecommerce
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: platform
+    container_name: order-ecommerce
     depends_on:
       - postgres
     ports:
@@ -14,7 +14,7 @@ services:
     env_file:
       - docker-env-file
     networks:
-      - platform-local
+      - order-ecommerce-local
 
   postgres:
     image: postgres:latest
@@ -23,17 +23,17 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DB=platform_db
-      - POSTGRES_USER=platformuser
-      - POSTGRES_PASSWORD=platformpwd
+      - POSTGRES_DB=orderecommerce_db
+      - POSTGRES_USER=orderecommerceuser
+      - POSTGRES_PASSWORD=orderecommercepwd
     volumes:
       - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
       - postgres-data:/var/lib/postgres
     networks:
-      - platform-local
+      - order-ecommerce-local
 volumes:
   postgres-data:
 
 networks:
-  platform-local:
-    name: platform-local
+  order-ecommerce-local:
+    name: order-ecommerce-local

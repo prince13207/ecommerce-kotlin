@@ -1,6 +1,6 @@
-###### Platform SpringBoot Kotlin App
+###### Order ECommerce SpringBoot Kotlin App
 
-This service interacts with postgresDB to perform CRUD ops for platform's order data
+This service interacts with postgresDB to perform CRUD ops for order data
 
 ###### Building the app
 
@@ -8,15 +8,15 @@ This service interacts with postgresDB to perform CRUD ops for platform's order 
 
 ###### Run Configs
 
-    -Dspring.datasource.platformdb.url= jdbc:postgresql://postgres:5432/platform_db?currentSchema=public
-    -Dspring.datasource.platformdb.name= platformuser
-    -Dspring.datasource.platformdb.password= platformpwd
-    -Dspring.datasource.platformdb.hikari.connectiontimeout=60000
-    -Dspring.datasource.platformdb.hikari.maximumpoolsize=5
-    -Dspring.datasource.platformdb.hikari.poolname=platformdb
-    -Dspring.datasource.platformdb.hikari.autocommit=false
-    -Dservice.name=platform
-    -Dspring_application_context_path=/platform
+    -Dspring.datasource.orderecommercedb.url= jdbc:postgresql://postgres:5432/orderecommerce_db?currentSchema=public
+    -Dspring.datasource.orderecommercedb.name= orderecommerceuser
+    -Dspring.datasource.orderecommercedb.password= orderecommercepwd
+    -Dspring.datasource.orderecommercedb.hikari.connectiontimeout=60000
+    -Dspring.datasource.orderecommercedb.hikari.maximumpoolsize=5
+    -Dspring.datasource.orderecommercedb.hikari.poolname=orderecommercedb
+    -Dspring.datasource.orderecommercedb.hikari.autocommit=false
+    -Dservice.name=orderecommerce
+    -Dspring_application_context_path=/order-ecommerce
 
 ###### Running the app
 
@@ -28,7 +28,7 @@ You can bring up postgres using
 
 Start the SpringBootApp in IDE using the above specified env args
 
-2.Running docker-compose to start both postgres and platformApp:
+2.Running docker-compose to start both postgres and OrderECommerceApp:
 
       docker-compose up 
       docker container ls
@@ -36,9 +36,9 @@ Start the SpringBootApp in IDE using the above specified env args
 3.Running app through Dockerfile and postgres through DockerCompose:
 
       docker-compose up postgres
-      docker build -t platform .
+      docker build -t order-ecommerce .
       docker images
-      docker run --env-file=docker-env-file platform
+      docker run --env-file=docker-env-file order-ecommerce
       docker container ls
 
 Note:
@@ -51,14 +51,14 @@ Note:
 
 Once DB instance is up, from any of your favorite DB editors or intelliJ :
 
-    URL : jdbc:postgresql://localhost:5432/platform_db
+    URL : jdbc:postgresql://localhost:5432/orderecommerce_db
     HOST : localhost
-    USERNAME : platformuser
-    PASSWORD : platformpwd
+    USERNAME : orderecommerceuser
+    PASSWORD : orderecommercepwd
 
 ###### Swagger
 
-http://localhost:8080/platform/swagger-ui/index.html
+http://localhost:8080/order-ecommerce/swagger-ui/index.html
 
 ######
 

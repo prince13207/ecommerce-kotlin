@@ -16,7 +16,7 @@ kapt {
     keepJavacAnnotationProcessors = true
 }
 
-group = "com.pdl"
+group = "com.order"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
