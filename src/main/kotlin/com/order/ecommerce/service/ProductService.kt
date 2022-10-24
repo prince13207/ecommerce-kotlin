@@ -17,14 +17,12 @@ class ProductService(val productRepository: ProductRepository) {
 
     fun createProduct(productDto: ProductDto): Product {
         log.info("Creating Product with productId {}", productDto.productId)
-        //map productEntity to productDto
         return productRepository.save(productDto.toProductEntity())
 
     }
 
     fun getProduct(productId: String): Product {
         log.info("Get Product by productId {}", productId)
-        //map productEntity to productDto
         return productRepository.findById(productId).orElseThrow()
 
     }

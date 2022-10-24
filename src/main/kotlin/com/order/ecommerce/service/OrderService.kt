@@ -39,8 +39,6 @@ class OrderService(
 
     @Transactional
     fun createOrder(orderDto: OrderDto): OrderCreateResponse {
-        //Can validate for OrderStatus, but should usually be taken care at FE
-        //Add global exception handler for handling different exceptions
         log.info("Creating Order for customer {}", orderDto.customerId)
         val savedOrder: Order =
             orderRepository.save(orderDto.toOrderEntity(UUID.randomUUID().toString()))
