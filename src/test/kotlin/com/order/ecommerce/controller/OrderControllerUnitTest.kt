@@ -2,6 +2,7 @@ package com.order.ecommerce.controller
 
 import com.order.ecommerce.dto.OrderCreateResponse
 import com.order.ecommerce.dto.OrderDto
+import com.order.ecommerce.enum.OrderStatus
 import com.order.ecommerce.service.OrderService
 import com.order.ecommerce.util.OrderUtil
 import org.assertj.core.api.Assertions.assertThat
@@ -24,7 +25,7 @@ class OrderControllerUnitTest {
 
     private val orderDtoRequest: OrderDto = OrderUtil.createTestOrder()
     private val mockOrderCreateResponse: OrderCreateResponse =
-        OrderCreateResponse("2e99fe21-2243-4004-9640-e992bbcc5040", "PROCESSING")
+        OrderCreateResponse("2e99fe21-2243-4004-9640-e992bbcc5040", OrderStatus.PROCESSING)
     private val mockOrderGetResponse = OrderUtil.createMockOrderResponse()
 
 

@@ -1,6 +1,7 @@
 package com.order.ecommerce.model
 
-import lombok.Getter
+import com.order.ecommerce.enum.PaymentMode
+import com.order.ecommerce.enum.PaymentStatus
 import java.io.Serializable
 import java.time.LocalDate
 import javax.persistence.*
@@ -17,13 +18,13 @@ class Payment(
     open var amount: Double,
 
     @Column(name = "payment_mode", nullable = false)
-    open var paymentMode: String,
+    open var paymentMode: PaymentMode,
 
     @Column(name = "confirmation_number", nullable = false)
     open var confirmationNumber: String,
 
     @Column(name = "payment_status", nullable = false)
-    open var paymentStatus: String,
+    open var paymentStatus: PaymentStatus,
 
     @Column(name = "createdAt", nullable = false)
     open var createdAt: LocalDate,

@@ -3,7 +3,7 @@ package com.order.ecommerce.controller
 import com.order.ecommerce.dto.OrderCreateResponse
 import com.order.ecommerce.dto.OrderDto
 import com.order.ecommerce.dto.OrderResponseDto
-import com.order.ecommerce.model.Order
+import com.order.ecommerce.enum.OrderStatus
 import com.order.ecommerce.service.OrderService
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.web.bind.annotation.*
@@ -26,7 +26,7 @@ class OrderController(val orderService: OrderService) {
     @PatchMapping("/orders/{orderId}")
     fun updateOrderStatus(
         @PathVariable("orderId") orderId: String,
-        @RequestParam(name = "orderStatus") orderStatus: String
+        @RequestParam(name = "orderStatus") orderStatus: OrderStatus
     ) {
         orderService.updateOrderStatus(orderId, orderStatus)
     }

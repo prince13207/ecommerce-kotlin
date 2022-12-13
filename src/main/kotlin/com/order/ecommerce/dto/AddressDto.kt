@@ -1,6 +1,7 @@
 package com.order.ecommerce.dto
 
 import lombok.NonNull
+import javax.validation.constraints.Email
 
 data class AddressDto(
 
@@ -9,7 +10,7 @@ data class AddressDto(
     @NonNull val city: String,
     @NonNull val state: String,
     @NonNull val zip: String,
-    @NonNull val email: String,
+    @NonNull @Email val email: String,
     @NonNull val phone: String
 
 )

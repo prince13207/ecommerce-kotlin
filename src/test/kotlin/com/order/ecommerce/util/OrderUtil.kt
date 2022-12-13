@@ -4,6 +4,7 @@ import com.order.ecommerce.dto.AddressDto
 import com.order.ecommerce.dto.OrderDto
 import com.order.ecommerce.dto.OrderItemDto
 import com.order.ecommerce.dto.OrderResponseDto
+import com.order.ecommerce.enum.OrderStatus
 import com.order.ecommerce.enum.PaymentMode
 import com.order.ecommerce.enum.ShippingMode
 import com.order.ecommerce.model.Address
@@ -23,8 +24,8 @@ class OrderUtil {
                 tax = 2.0,
                 shippingCharges = 2.0,
                 title = "test",
-                shippingMode = ShippingMode.DELIVERY.name,
-                paymentMode = PaymentMode.CREDIT.name,
+                shippingMode = ShippingMode.DELIVERY,
+                paymentMode = PaymentMode.CREDIT,
                 billingAddress = createAddress(),
                 shippingAddress = createAddress(),
                 orderItems = listOf(
@@ -58,14 +59,16 @@ class OrderUtil {
                 150.0,
                 130.0,
                 10.0,
+                OrderStatus.PROCESSING,
                 10.0,
                 "test order",
-                "FLIGHT",
+                ShippingMode.DELIVERY,
                 50.0,
-                "ONLINE",
+                PaymentMode.CREDIT,
                 billingAddress,
                 shippingAddress,
-                itemList
+                itemList,
+                dateTime
             )
         }
 

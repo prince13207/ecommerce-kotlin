@@ -3,6 +3,7 @@ package com.order.ecommerce.mapper
 import com.order.ecommerce.dto.AddressDto
 import com.order.ecommerce.dto.OrderItemDto
 import com.order.ecommerce.dto.OrderResponseDto
+import com.order.ecommerce.enum.PaymentMode
 import com.order.ecommerce.enum.PaymentStatus
 import com.order.ecommerce.model.Address
 import com.order.ecommerce.model.Order
@@ -23,13 +24,13 @@ class OrderDetailsMapper(
     private val paymentRepository: PaymentRepository
 ) {
 
-    fun buildAndLoadPayment(amount: Double, paymentMode: String): Payment {
+    fun buildAndLoadPayment(amount: Double, paymentMode: PaymentMode): Payment {
         val payment = Payment(
             UUID.randomUUID().toString(),
             amount,
             paymentMode,
             UUID.randomUUID().toString(),
-            PaymentStatus.PROCESSING.name,
+            PaymentStatus.PROCESSING,
             LocalDate.now(),
             null
         )
@@ -99,6 +100,7 @@ class OrderDetailsMapper(
         customerId = order.customerId,
         subTotal = order.subTotal,
         totalAmt = order.totalAmt,
+        orderStatus = order.orderStatus,
         tax = order.tax,
         shippingCharges = order.shippingCharges,
         title = order.title,
@@ -107,7 +109,8 @@ class OrderDetailsMapper(
         shippingAddress = buildAddressDto(order.shippingAddress),
         paymentMode = order.payment.paymentMode,
         orderItems = buildOrderItemDtoList(order.orderItems),
-        amount = order.payment.amount
+        amount = order.payment.amount,
+        createdAt =  order.createdAt
     )
 
 }

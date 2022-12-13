@@ -29,7 +29,7 @@ class OrderService(
         val log: Logger = LoggerFactory.getLogger(OrderService::class.java)
     }
 
-    fun updateOrderStatus(orderId: String, orderStatus: String) {
+    fun updateOrderStatus(orderId: String, orderStatus: OrderStatus) {
         val order: Order = orderRepository.findById(orderId).orElseThrow()
         order.orderStatus = orderStatus
         orderRepository.save(order)
@@ -67,7 +67,7 @@ class OrderService(
 
         return Order(
         orderId = orderId,
-        orderStatus = OrderStatus.PROCESSING.name,
+        orderStatus = OrderStatus.PROCESSING,
         customerId = customerId,
         subTotal = totalAmount+shippingCharges+tax,
         totalAmt = totalAmount,

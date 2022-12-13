@@ -1,5 +1,7 @@
 package com.order.ecommerce.model
 
+import com.order.ecommerce.enum.OrderStatus
+import com.order.ecommerce.enum.ShippingMode
 import lombok.Data
 import java.io.Serializable
 import java.time.LocalDateTime
@@ -15,7 +17,7 @@ class Order(
     open var orderId: String,
 
     @Column(name = "order_status")
-    open var orderStatus: String,
+    open var orderStatus: OrderStatus,
 
     @Column(name = "customer_id")
     open var customerId: String,
@@ -36,7 +38,7 @@ class Order(
     open var title: String,
 
     @Column(name = "shipping_mode")
-    open var shippingMode: String,
+    open var shippingMode: ShippingMode,
 
     @Column(name = "created_at")
     open var createdAt: LocalDateTime,
