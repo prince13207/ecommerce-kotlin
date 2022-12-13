@@ -19,11 +19,13 @@ class OrderController(val orderService: OrderService) {
     }
 
     @GetMapping("/orders/{orderId}")
+    @Operation(summary = "Get order details by order ID", description = "Get order details by order ID")
     fun findOrderById(@PathVariable(name = "orderId") orderId: String): OrderResponseDto {
         return orderService.findOrderById(orderId)
     }
 
     @PatchMapping("/orders/{orderId}")
+    @Operation(summary = "Update order status by order ID", description = "Update order status by order ID")
     fun updateOrderStatus(
         @PathVariable("orderId") orderId: String,
         @RequestParam(name = "orderStatus") orderStatus: OrderStatus

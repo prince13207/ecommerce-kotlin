@@ -55,7 +55,7 @@ class Order(
     @JoinColumn(referencedColumnName = "address_id", name = "shipping_address_id")
     open var shippingAddress: Address,
 
-    @OneToMany(targetEntity = OrderItem::class, fetch = FetchType.LAZY, mappedBy = "order")
+    @OneToMany(targetEntity = OrderItem::class, fetch = FetchType.LAZY, mappedBy = "order",cascade = [CascadeType.ALL])
     open var orderItems: MutableList<OrderItem>?
 
 ) : Serializable

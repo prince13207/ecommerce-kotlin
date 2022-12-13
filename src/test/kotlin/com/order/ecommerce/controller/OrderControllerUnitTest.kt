@@ -3,7 +3,7 @@ package com.order.ecommerce.controller
 import com.order.ecommerce.dto.OrderCreateResponse
 import com.order.ecommerce.dto.OrderDto
 import com.order.ecommerce.enum.OrderStatus
-import com.order.ecommerce.service.OrderService
+import com.order.ecommerce.service.impl.OrderServiceImpl
 import com.order.ecommerce.util.OrderUtil
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -18,7 +18,7 @@ class OrderControllerUnitTest {
 
 
     @Mock
-    lateinit var orderService: OrderService
+    lateinit var orderService: OrderServiceImpl
 
     @InjectMocks
     lateinit var orderController: OrderController
