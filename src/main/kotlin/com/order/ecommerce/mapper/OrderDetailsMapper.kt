@@ -1,8 +1,8 @@
 package com.order.ecommerce.mapper
 
 import com.order.ecommerce.dto.AddressDto
-import com.order.ecommerce.dto.OrderDto
 import com.order.ecommerce.dto.OrderItemDto
+import com.order.ecommerce.dto.OrderResponseDto
 import com.order.ecommerce.enum.PaymentStatus
 import com.order.ecommerce.model.Address
 import com.order.ecommerce.model.Order
@@ -94,13 +94,8 @@ class OrderDetailsMapper(
     }
 
 
-    private fun OrderItem.toOrderItemDto() = OrderItemDto(
-        productId = product?.productId ?: "",
-        quantity = quantity
 
-    )
-
-    fun buildOrderDto(order: Order) = OrderDto(
+    fun buildOrderResponseDto(order: Order) = OrderResponseDto(
         customerId = order.customerId,
         subTotal = order.subTotal,
         totalAmt = order.totalAmt,

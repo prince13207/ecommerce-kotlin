@@ -19,6 +19,6 @@ class OrderItem(
     open var order: Order?,
 
     @Column(name = "quantity", nullable = false)
-    open var quantity: String
+    open var quantity: Int
 
 ) : Serializable

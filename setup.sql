@@ -54,8 +54,8 @@ create table if not exists ecommerce_order
 create table if not exists ecommerce_order_item
 (
     order_id       varchar(60),
-    product_id         varchar(60),
-    quantity       varchar(60) not null,
+    product_id     varchar(60),
+    quantity      integer not null,
 
     PRIMARY KEY (order_id,product_id),
     FOREIGN KEY (order_id) REFERENCES ecommerce_order (order_id),

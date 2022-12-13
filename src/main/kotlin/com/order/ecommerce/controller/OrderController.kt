@@ -2,6 +2,7 @@ package com.order.ecommerce.controller
 
 import com.order.ecommerce.dto.OrderCreateResponse
 import com.order.ecommerce.dto.OrderDto
+import com.order.ecommerce.dto.OrderResponseDto
 import com.order.ecommerce.model.Order
 import com.order.ecommerce.service.OrderService
 import io.swagger.v3.oas.annotations.Operation
@@ -18,7 +19,7 @@ class OrderController(val orderService: OrderService) {
     }
 
     @GetMapping("/orders/{orderId}")
-    fun findOrderById(@PathVariable(name = "orderId") orderId: String): OrderDto {
+    fun findOrderById(@PathVariable(name = "orderId") orderId: String): OrderResponseDto {
         return orderService.findOrderById(orderId)
     }
 

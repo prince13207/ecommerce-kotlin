@@ -3,6 +3,7 @@ package com.order.ecommerce.util
 import com.order.ecommerce.dto.AddressDto
 import com.order.ecommerce.dto.OrderDto
 import com.order.ecommerce.dto.OrderItemDto
+import com.order.ecommerce.dto.OrderResponseDto
 import com.order.ecommerce.enum.PaymentMode
 import com.order.ecommerce.enum.ShippingMode
 import com.order.ecommerce.model.Address
@@ -19,19 +20,16 @@ class OrderUtil {
         fun createTestOrder(): OrderDto {
             return OrderDto(
                 customerId = "1",
-                subTotal = 6.0,
-                totalAmt = 10.0,
                 tax = 2.0,
                 shippingCharges = 2.0,
                 title = "test",
                 shippingMode = ShippingMode.DELIVERY.name,
-                amount = 10.0,
                 paymentMode = PaymentMode.CREDIT.name,
                 billingAddress = createAddress(),
                 shippingAddress = createAddress(),
                 orderItems = listOf(
-                    OrderItemDto("101", "10"),
-                    OrderItemDto("102", "10")
+                    OrderItemDto("101", 10),
+                    OrderItemDto("102", 10)
                 )
             )
         }
@@ -48,14 +46,14 @@ class OrderUtil {
         )
 
         @JvmStatic
-        fun createMockOrderResponse(): OrderDto {
+        fun createMockOrderResponse(): OrderResponseDto {
 
             val billingAddress = AddressDto("adress1","address2","city","state","123213","asd@xyz.com","23123123")
             val shippingAddress = AddressDto("adress1","address2","city","state","123213","asd@xyz.com","23123123")
             val itemList = emptyList<OrderItemDto>()
 
             val dateTime = LocalDateTime.parse("2022-10-17T11:31:27.771692");
-            return OrderDto(
+            return OrderResponseDto(
                 "2e99fe21-2243-4004-9640-e992bbcc5040",
                 150.0,
                 130.0,

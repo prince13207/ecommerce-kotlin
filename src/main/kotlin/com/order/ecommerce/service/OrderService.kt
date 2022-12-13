@@ -2,6 +2,8 @@ package com.order.ecommerce.service
 
 import com.order.ecommerce.dto.OrderCreateResponse
 import com.order.ecommerce.dto.OrderDto
+import com.order.ecommerce.dto.OrderItemDto
+import com.order.ecommerce.dto.OrderResponseDto
 import com.order.ecommerce.enum.OrderStatus
 import com.order.ecommerce.mapper.OrderDetailsMapper
 import com.order.ecommerce.model.Order
@@ -19,6 +21,7 @@ import javax.transaction.Transactional
 class OrderService(
     val orderRepository: OrderRepository,
     val orderDetailsMapper: OrderDetailsMapper,
+    val productService: ProductService,
     val orderItemRepository: OrderItemRepository
 ) {
 
@@ -32,9 +35,9 @@ class OrderService(
         orderRepository.save(order)
     }
 
-    fun findOrderById(orderId: String): OrderDto {
+    fun findOrderById(orderId: String): OrderResponseDto {
         //Always return a dto - Need to map entity to dto to get all fields
-     return orderDetailsMapper.buildOrderDto(orderRepository.findById(orderId).orElseThrow());
+        return orderDetailsMapper.buildOrderResponseDto(orderRepository.findById(orderId).orElseThrow());
     }
 
     @Transactional
@@ -47,27 +50,39 @@ class OrderService(
             orderDetailsMapper.buildOrderItems(orderDto.orderItems, savedOrder.orderId)
         orderItemRepository.saveAll(orderItemList)
         //Always return a dto - Need to map entity to dto
-        return  OrderCreateResponse(savedOrder.orderId, savedOrder.orderStatus)
+        return OrderCreateResponse(savedOrder.orderId, savedOrder.orderStatus)
 
     }
 
-    fun OrderDto.toOrderEntity(orderId: String) = Order(
+    private fun calculateTotalAmount(orderItems: List<OrderItemDto>) : Double {
+        return orderItems
+            .map { orderItem -> productService.getProduct(orderItem.productId).price * orderItem.quantity }
+            .reduce{ price1, price2 -> price1 + price2 }
+    }
+
+
+    fun OrderDto.toOrderEntity(orderId: String): Order {
+
+        val totalAmount = calculateTotalAmount(orderItems);
+
+        return Order(
         orderId = orderId,
         orderStatus = OrderStatus.PROCESSING.name,
         customerId = customerId,
-        subTotal = subTotal,
-        totalAmt = totalAmt,
+        subTotal = totalAmount+shippingCharges+tax,
+        totalAmt = totalAmount,
         tax = tax,
         shippingCharges = shippingCharges,
         title = title,
         shippingMode = shippingMode,
         createdAt = LocalDateTime.now(),
-        payment = orderDetailsMapper.buildAndLoadPayment(amount, paymentMode),
+        payment = orderDetailsMapper.buildAndLoadPayment(totalAmount+shippingCharges+tax, paymentMode),
         billingAddress = orderDetailsMapper.buildAndLoadAddress(billingAddress),
         shippingAddress = orderDetailsMapper.buildAndLoadAddress(shippingAddress),
         orderItems = null
 
-    )
+    );
+}
 
 
 }
