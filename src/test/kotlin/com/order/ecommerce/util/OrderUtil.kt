@@ -48,29 +48,26 @@ class OrderUtil {
         )
 
         @JvmStatic
-        fun createMockOrderResponse(): Order {
+        fun createMockOrderResponse(): OrderDto {
 
-            val payment = Payment::class.java.getConstructor().newInstance()
-            val billingAddress = Address::class.java.getConstructor().newInstance()
-            val shippingAddress = Address::class.java.getConstructor().newInstance()
-            val mutableList = mutableListOf<OrderItem>()
+            val billingAddress = AddressDto("adress1","address2","city","state","123213","asd@xyz.com","23123123")
+            val shippingAddress = AddressDto("adress1","address2","city","state","123213","asd@xyz.com","23123123")
+            val itemList = emptyList<OrderItemDto>()
 
             val dateTime = LocalDateTime.parse("2022-10-17T11:31:27.771692");
-            return Order(
+            return OrderDto(
                 "2e99fe21-2243-4004-9640-e992bbcc5040",
-                "PROCESSING",
-                "2",
-                6.0,
+                150.0,
+                130.0,
                 10.0,
-                2.0,
-                2.0,
-                "testProduct",
-                "delivery",
-                dateTime,
-                payment,
+                10.0,
+                "test order",
+                "FLIGHT",
+                50.0,
+                "ONLINE",
                 billingAddress,
                 shippingAddress,
-                mutableList
+                itemList
             )
         }
 

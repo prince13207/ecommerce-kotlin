@@ -1,5 +1,6 @@
 package com.order.ecommerce.model
 
+import lombok.Getter
 import java.io.Serializable
 import java.time.LocalDate
 import javax.persistence.*
@@ -10,24 +11,24 @@ class Payment(
 
     @Id
     @Column(name = "payment_id", nullable = false, unique = true)
-    private var paymentId: String,
+    open var paymentId: String,
 
     @Column(name = "amount", nullable = false)
-    private var amount: Double,
+    open var amount: Double,
 
     @Column(name = "payment_mode", nullable = false)
-    private var paymentMode: String,
+    open var paymentMode: String,
 
     @Column(name = "confirmation_number", nullable = false)
-    private var confirmationNumber: String,
+    open var confirmationNumber: String,
 
     @Column(name = "payment_status", nullable = false)
-    private var paymentStatus: String,
+    open var paymentStatus: String,
 
     @Column(name = "createdAt", nullable = false)
-    private var createdAt: LocalDate,
+    open var createdAt: LocalDate,
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "payment")
-    private var order: Order?
+    open var order: Order?
 
 ) : Serializable

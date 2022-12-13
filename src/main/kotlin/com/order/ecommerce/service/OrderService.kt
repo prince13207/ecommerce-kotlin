@@ -32,9 +32,9 @@ class OrderService(
         orderRepository.save(order)
     }
 
-    fun findOrderById(orderId: String): Order {
+    fun findOrderById(orderId: String): OrderDto {
         //Always return a dto - Need to map entity to dto to get all fields
-        return orderRepository.findById(orderId).orElseThrow()
+     return orderDetailsMapper.buildOrderDto(orderRepository.findById(orderId).orElseThrow());
     }
 
     @Transactional
@@ -47,7 +47,7 @@ class OrderService(
             orderDetailsMapper.buildOrderItems(orderDto.orderItems, savedOrder.orderId)
         orderItemRepository.saveAll(orderItemList)
         //Always return a dto - Need to map entity to dto
-        return OrderCreateResponse(savedOrder.orderId, savedOrder.orderStatus)
+        return  OrderCreateResponse(savedOrder.orderId, savedOrder.orderStatus)
 
     }
 
@@ -68,5 +68,6 @@ class OrderService(
         orderItems = null
 
     )
+
 
 }

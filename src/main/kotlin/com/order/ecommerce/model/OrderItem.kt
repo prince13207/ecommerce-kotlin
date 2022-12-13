@@ -8,17 +8,17 @@ import javax.persistence.*
 class OrderItem(
 
     @EmbeddedId
-    private var orderItemPk: OrderItemPk,
+    open var orderItemPk: OrderItemPk,
 
     @ManyToOne
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private var product: Product?,
+    open var product: Product?,
 
     @ManyToOne
     @JoinColumn(name = "order_id", insertable = false, updatable = false)
-    private var order: Order?,
+    open var order: Order?,
 
     @Column(name = "quantity", nullable = false)
-    private var quantity: String
+    open var quantity: String
 
 ) : Serializable
